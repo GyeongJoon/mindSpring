@@ -17,6 +17,10 @@ public class AIResponse{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
+
+    @OneToOne
+    @JoinColumn(name = "worry_id")
+    private Worry worry;
 }
