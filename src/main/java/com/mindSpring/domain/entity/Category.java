@@ -19,4 +19,8 @@ public class Category{
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @OneToOne
+    @JoinColumn(name = "worry_id")
+    private Worry worry;
 }
