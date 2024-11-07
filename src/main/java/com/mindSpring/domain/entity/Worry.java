@@ -22,7 +22,7 @@ public class Worry extends BaseEntity{
     private String content;
 
     @OneToOne(mappedBy = "worry")
-    private AIAnswar aiAnswar;
+    private AIAnswer aiAnswer;
 
     @OneToOne(mappedBy = "worry")
     private Category category;

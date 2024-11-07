@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class AIAnswar {
+public class AIAnswer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
