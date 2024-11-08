@@ -1,5 +1,6 @@
 package com.mindSpring.domain.entity;
 
+import com.mindSpring.domain.dto.MemberRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,4 +44,23 @@ public class Member extends BaseEntity{
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
+
+    // update 메서드
+    public void updateMemberInfo(MemberRequestDto memberRequestDto) {
+        if (memberRequestDto.getName() != null) {
+            this.name = memberRequestDto.getName();
+        }
+        if (memberRequestDto.getEmail() != null) {
+            this.email = memberRequestDto.getEmail();
+        }
+        if (memberRequestDto.getPhone() != null) {
+            this.phone = memberRequestDto.getPhone();
+        }
+        if (memberRequestDto.getGender() != null) {
+            this.gender = memberRequestDto.getGender();
+        }
+        if (memberRequestDto.getAge() != 0) {
+            this.age = memberRequestDto.getAge();
+        }
+    }
 }
