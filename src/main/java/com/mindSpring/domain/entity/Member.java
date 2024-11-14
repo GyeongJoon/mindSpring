@@ -1,6 +1,6 @@
 package com.mindSpring.domain.entity;
 
-import com.mindSpring.domain.dto.MemberRequestDto;
+import com.mindSpring.domain.dto.SignupRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,21 +46,21 @@ public class Member extends BaseEntity{
     private List<Review> reviews = new ArrayList<>();
 
     // update 메서드
-    public void updateMemberInfo(MemberRequestDto memberRequestDto) {
-        if (memberRequestDto.getName() != null) {
-            this.name = memberRequestDto.getName();
+    public void updateMemberInfo(SignupRequestDto signupRequestDto) {
+        if (signupRequestDto.getName() != null) {
+            this.name = signupRequestDto.getName();
         }
-        if (memberRequestDto.getEmail() != null) {
-            this.email = memberRequestDto.getEmail();
+        if (signupRequestDto.getEmail() != null) {
+            this.email = signupRequestDto.getEmail();
         }
-        if (memberRequestDto.getPhone() != null) {
-            this.phone = memberRequestDto.getPhone();
+        if (signupRequestDto.getPhone() != null) {
+            this.phone = signupRequestDto.getPhone();
         }
-        if (memberRequestDto.getGender() != null) {
-            this.gender = memberRequestDto.getGender();
+        if (signupRequestDto.getGender() != null) {
+            this.gender = signupRequestDto.getGender();
         }
-        if (memberRequestDto.getAge() != 0) {
-            this.age = memberRequestDto.getAge();
+        if (signupRequestDto.getAge() != 0) {
+            this.age = signupRequestDto.getAge();
         }
     }
 }
