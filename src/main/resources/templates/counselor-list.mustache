@@ -1,0 +1,18 @@
+{{>layouts/header}}
+<div class="container py-5">
+    <h2 class="mb-4">상담사 목록</h2>
+    <div class="row g-4">
+        {{#counselors}}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">전문 분야: {{specialization}}</p>
+                        <a href="/counselors/{{id}}" class="btn btn-primary">상세 보기</a>
+                    </div>
+                </div>
+            </div>
+        {{/counselors}}
+    </div>
+</div>
+{{>layouts/footer}}

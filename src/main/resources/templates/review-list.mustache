@@ -1,0 +1,19 @@
+{{>layouts/header}}
+<div class="container py-5">
+    <h2 class="mb-4">상담사 리뷰</h2>
+    {{#reviews}}
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <h5 class="card-title">{{userName}}</h5>
+                    <div class="text-warning">
+                        {{#rating}}★{{/rating}}
+                    </div>
+                </div>
+                <p class="card-text">{{content}}</p>
+                <small class="text-muted">{{createdAt}}</small>
+            </div>
+        </div>
+    {{/reviews}}
+</div>
+{{>layouts/footer}}

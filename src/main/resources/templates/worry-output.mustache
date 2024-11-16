@@ -1,0 +1,14 @@
+{{>layouts/header}}
+<div class="container py-5">
+    <h2 class="mb-4">AI 상담 결과</h2>
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="card-text">{{aiResponse}}</p>
+        </div>
+    </div>
+    <form action="/worries/save" method="POST">
+        <input type="hidden" name="worryId" value="{{worryId}}">
+        <button type="submit" class="btn btn-primary">고민 저장</button>
+    </form>
+</div>
+{{>layouts/footer}}

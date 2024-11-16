@@ -1,0 +1,17 @@
+{{>layouts/header}}
+<div class="container py-5">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">{{counselor.name}}</h2>
+            <p class="card-text">나이: {{counselor.age}}세</p>
+            <p class="card-text">경력: {{counselor.experience}}년</p>
+            <p class="card-text">전문 분야: {{counselor.specialization}}</p>
+        </div>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="/counselors/{{counselor.id}}/reviews" class="btn btn-primary">리뷰 보기</a>
+        <a href="/counselors/{{counselor.id}}/reviews/new" class="btn btn-outline-primary">리뷰 작성</a>
+        <button class="btn btn-success">상담사 연결</button>
+    </div>
+</div>
+{{>layouts/footer}}
