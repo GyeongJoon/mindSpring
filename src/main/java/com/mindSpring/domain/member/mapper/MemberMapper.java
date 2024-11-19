@@ -1,20 +1,21 @@
-package com.mindSpring.domain.mapper;
+package com.mindSpring.domain.member.mapper;
 
-import com.mindSpring.domain.dto.SignupRequestDto;
-import com.mindSpring.domain.dto.MemberResponseDto;
-import com.mindSpring.domain.entity.Member;
+import com.mindSpring.domain.member.dto.LoginRequestDto;
+import com.mindSpring.domain.member.dto.SignupRequestDto;
+import com.mindSpring.domain.member.dto.MemberResponseDto;
+import com.mindSpring.domain.member.entity.Member;
 
 public class MemberMapper {
 
-    // Dto -> Entity
+    // Dto -> Entity(회원가입)
     public static Member toMemberEntity(SignupRequestDto signupRequestDto) {
         return Member.builder()
-                .name(signupRequestDto.getName())
                 .email(signupRequestDto.getEmail())
+                .name(signupRequestDto.getName())
                 .password(signupRequestDto.getPassword())
-                .phone(signupRequestDto.getPhone())
                 .age(signupRequestDto.getAge())
                 .gender(signupRequestDto.getGender())
+                .job(signupRequestDto.getJob())
                 .build();
     }
 
@@ -24,7 +25,7 @@ public class MemberMapper {
                 .id(member.getId())
                 .name(member.getName())
                 .email(member.getEmail())
-                .phone(member.getPhone())
+                .job(member.getJob())
                 .age(member.getAge())
                 .gender(member.getGender())
                 .build();

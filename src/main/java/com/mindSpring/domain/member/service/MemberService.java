@@ -1,13 +1,13 @@
-package com.mindSpring.service;
+package com.mindSpring.domain.member.service;
 
-import com.mindSpring.domain.dto.LoginRequestDto;
-import com.mindSpring.domain.dto.SignupRequestDto;
-import com.mindSpring.domain.dto.MemberResponseDto;
-import com.mindSpring.domain.entity.Member;
-import com.mindSpring.domain.mapper.MemberMapper;
+import com.mindSpring.domain.member.dto.LoginRequestDto;
+import com.mindSpring.domain.member.dto.SignupRequestDto;
+import com.mindSpring.domain.member.dto.MemberResponseDto;
+import com.mindSpring.domain.member.entity.Member;
+import com.mindSpring.domain.member.mapper.MemberMapper;
 import com.mindSpring.exception.ErrorCode;
 import com.mindSpring.exception.appException;
-import com.mindSpring.repository.MemberRepository;
+import com.mindSpring.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,15 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-
-    // 회원 조회 API
-    @Transactional(readOnly = true)
-    public MemberResponseDto getMemberId(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new appException(ErrorCode.MEMBER_NOT_FOUND));
-
-        return MemberMapper.toMemberDto(member);
-    }
 
     // 회원 등록 API
     @Transactional
@@ -55,22 +46,15 @@ public class MemberService {
         return MemberMapper.toMemberDto(member);
     }
 
-    // 회원 수정 API
-    @Transactional
-    public MemberResponseDto updateMember(Long memberId, SignupRequestDto signupRequestDto) {
+    // 회원 조회(프로필) API
+    @Transactional(readOnly = true)
+    public MemberResponseDto getMemberId(Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new appException(ErrorCode.MEMBER_NOT_FOUND));
 
-        member.updateMemberInfo(signupRequestDto);
         return MemberMapper.toMemberDto(member);
     }
-
-    // 회원 삭제 API
-    @Transactional
-    public void deleteMember(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new appException(ErrorCode.MEMBER_NOT_FOUND));
-
-        memberRepository.delete(member);
-    }
 }
+
+
+

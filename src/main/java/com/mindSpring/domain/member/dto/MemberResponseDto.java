@@ -1,4 +1,4 @@
-package com.mindSpring.domain.dto;
+package com.mindSpring.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,11 +13,11 @@ public class MemberResponseDto {
 
     private Long id;
 
-    private String name;
-
     private String email;
 
-    private String phone;
+    private String name;
+
+    private String job;
 
     private int age;
 
