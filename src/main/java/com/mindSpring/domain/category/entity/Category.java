@@ -1,5 +1,6 @@
-package com.mindSpring.domain.entity;
+package com.mindSpring.domain.category.entity;
 
+import com.mindSpring.domain.worry.entity.Worry;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,6 @@ public class Category{
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "worry_id")
+    @OneToOne(mappedBy = "category")
     private Worry worry;
 }
