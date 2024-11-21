@@ -1,10 +1,14 @@
-package com.mindSpring.domain.entity;
+package com.mindSpring.domain.counselor.entity;
 
+import com.mindSpring.domain.review.entity.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -28,4 +32,7 @@ public class Counselor{
 
     @Column(columnDefinition = "TEXT")
     private String career;
+
+    @OneToMany(mappedBy = "counselor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 }
