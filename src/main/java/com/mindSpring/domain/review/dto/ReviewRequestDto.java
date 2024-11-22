@@ -1,4 +1,4 @@
-package com.mindSpring.domain.dto;
+package com.mindSpring.domain.review.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ReviewResponseDto {
-
-    private Long id;
+public class ReviewRequestDto {
 
     private int rating;
 

@@ -1,5 +1,8 @@
-package com.mindSpring.domain.entity;
+package com.mindSpring.domain.review.entity;
 
+import com.mindSpring.domain.counselor.entity.Counselor;
+import com.mindSpring.domain.entity.BaseEntity;
+import com.mindSpring.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class Review extends BaseEntity{
+public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +27,7 @@ public class Review extends BaseEntity{
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "review_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne

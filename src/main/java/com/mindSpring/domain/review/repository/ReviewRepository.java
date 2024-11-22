@@ -1,6 +1,6 @@
-package com.mindSpring.repository;
+package com.mindSpring.domain.review.repository;
 
-import com.mindSpring.domain.entity.Review;
+import com.mindSpring.domain.review.entity.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
