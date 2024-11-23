@@ -1,9 +1,11 @@
-package com.mindSpring.domain.dto;
+package com.mindSpring.domain.worry.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
@@ -16,4 +18,8 @@ public class WorryResponseDto {
     private String title;
 
     private String content;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 }
