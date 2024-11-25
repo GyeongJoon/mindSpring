@@ -1,4 +1,4 @@
-package com.mindSpring.domain.dto;
+package com.mindSpring.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SignupRequestDto {
 
-    private String name;
-
     private String email;
 
-    private String password;
+    private String name;
 
-    private String phone;
+    private String password;
 
     private int age;
 
     private String gender;
+
+    private String job;
 }

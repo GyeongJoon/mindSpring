@@ -1,4 +1,4 @@
-package com.mindSpring.domain.dto;
+package com.mindSpring.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
