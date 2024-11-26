@@ -1,22 +1,27 @@
 package com.mindSpring.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
+@Slf4j
 public class OpenAiConfig {
-    @Value("${OPENAI_API_KEY:default-api-key}")
-    private String openAiKey;
+
+    @Value("${openai.api.url}")
+    private String apiUrl;
+
+    @Value("${openai.api.key}")
+    private String apiKey;
 
     @Bean
-    public RestTemplate template(){
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add((request, body, execution) -> {
-            request.getHeaders().add("Authorization", "Bearer " + openAiKey);
-            return execution.execute(request, body);
-        });
-        return restTemplate;
+    public WebClient webClient() {
+        return WebClient.builder()
+                .baseUrl(apiUrl)
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
+                .build();
     }
 }
