@@ -1,7 +1,6 @@
 package com.mindSpring.domain.worry.service;
 
 import com.mindSpring.domain.category.entity.Category;
-import com.mindSpring.domain.category.mapper.CategoryMapper;
 import com.mindSpring.domain.category.repository.CategoryRepository;
 import com.mindSpring.domain.member.entity.Member;
 import com.mindSpring.domain.member.repository.MemberRepository;
