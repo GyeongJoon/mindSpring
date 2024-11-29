@@ -15,6 +15,8 @@ import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Map;
+
 @Tag(name = "회원 관리", description = "회원 CRUD API")
 public interface MemberControllerSwagger {
 
@@ -22,12 +24,13 @@ public interface MemberControllerSwagger {
     @Operation(summary = "회원가입(회원가입 페이지)", description = "새로운 회원을 등록합니다.")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "200", description = "회원가입 성공"),
+                    @ApiResponse(responseCode = "200", description = "회원가입 성공",
+                            content = @Content(mediaType = "application/json", schema = @Schema(example = "{\"message\": \"회원가입이 성공적으로 완료되었습니다.\"}"))),
                     @ApiResponse(responseCode = "400", description = "회원이 이미 존재함",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<String> createMember(
+    ResponseEntity<Map<String, String>> createMember(
             @Parameter(description = "회원가입 정보", required = true) SignupRequestDto signupRequestDto
     );
 

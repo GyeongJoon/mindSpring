@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -19,9 +22,13 @@ public class MemberController implements MemberControllerSwagger{
     // 회원가입
     @Override
     @PostMapping("/auth/signup")
-    public ResponseEntity<String> createMember (@RequestBody SignupRequestDto signupRequestDto) {
+    public ResponseEntity<Map<String, String>> createMember (@RequestBody SignupRequestDto signupRequestDto) {
         memberService.createMember(signupRequestDto);
-        return ResponseEntity.ok("회원가입 되었습니다.");
+
+        // JSON 형태의 메시지 생성
+         Map<String, String> response = new HashMap<>();
+         response.put("message", "회원가입이 성공적으로 완료되었습니다.");
+        return ResponseEntity.ok(response);
     }
 
     // 로그인
