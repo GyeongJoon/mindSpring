@@ -4,7 +4,6 @@ import com.mindSpring.domain.counselor.dto.CounselorResponseDto;
 import com.mindSpring.domain.counselor.entity.Counselor;
 import com.mindSpring.domain.counselor.mapper.CounselorMapper;
 import com.mindSpring.domain.counselor.repository.CounselorRepository;
-import com.mindSpring.domain.member.entity.Member;
 import com.mindSpring.domain.member.repository.MemberRepository;
 import com.mindSpring.exception.ErrorCode;
 import com.mindSpring.exception.appException;
