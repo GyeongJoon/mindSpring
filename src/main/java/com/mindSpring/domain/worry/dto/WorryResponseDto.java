@@ -15,8 +15,6 @@ public class WorryResponseDto {
 
     private Long id;
 
-    private String title;
-
     private String content;
 
     private LocalDateTime createdAt;

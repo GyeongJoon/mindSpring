@@ -11,7 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class WorryRequestDto {
 
-    private String title;
-
     private String content;
 }
