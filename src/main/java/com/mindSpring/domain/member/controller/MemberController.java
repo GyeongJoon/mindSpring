@@ -34,9 +34,9 @@ public class MemberController implements MemberControllerSwagger{
     // 로그인
     @Override
     @PostMapping("/auth/login")
-    public ResponseEntity<String> loginMember (@RequestBody LoginRequestDto loginRequestDto) {
-        memberService.login(loginRequestDto);
-        return ResponseEntity.ok("로그인 되었습니다.");
+    public ResponseEntity<MemberResponseDto> loginMember (@RequestBody LoginRequestDto loginRequestDto) {
+        MemberResponseDto login = memberService.login(loginRequestDto);
+        return ResponseEntity.ok(login);
     }
 
     // 프로필
