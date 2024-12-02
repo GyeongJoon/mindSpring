@@ -43,7 +43,7 @@ public interface MemberControllerSwagger {
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<String> loginMember(
+    ResponseEntity<MemberResponseDto> loginMember(
             @Parameter(description = "로그인 정보", required = true) LoginRequestDto loginRequestDto
     );
 
