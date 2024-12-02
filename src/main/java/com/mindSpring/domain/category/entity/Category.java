@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,6 +23,6 @@ public class Category{
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToOne(mappedBy = "category")
-    private Worry worry;
+    @OneToMany(mappedBy = "category")  // OneToOne을 OneToMany로 변경
+    private List<Worry> worries;
 }
