@@ -12,7 +12,6 @@ public class WorryMapper {
     // Dto -> Entity
     public static Worry toWorryEntity(Member member, Category category, WorryRequestDto worryRequestDto) {
         return Worry.builder()
-                .title(worryRequestDto.getTitle())
                 .content(worryRequestDto.getContent())
                 .category(category)
                 .member(member)
@@ -23,7 +22,6 @@ public class WorryMapper {
     public static WorryResponseDto toWorryDto(Worry worry) {
         return WorryResponseDto.builder()
                 .id(worry.getId())
-                .title(worry.getTitle())
                 .content(worry.getContent())
                 .build();
     }

@@ -23,7 +23,7 @@ public class WorryController implements WorryControllerSwagger{
                                               @PathVariable("categoryId") Long categoryId,
                                               @RequestBody WorryRequestDto worryRequestDto) {
         WorryResponseDto worry = worryService.createWorry(memberId, categoryId, worryRequestDto);
-        return ResponseEntity.ok("\""+ worry.getTitle() + "\" 이 등록되었습니다.");
+        return ResponseEntity.ok("고민이 등록되었습니다.");
     }
 
     // 고민 조회
