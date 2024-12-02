@@ -26,7 +26,7 @@ public class Worry extends BaseEntity {
     @OneToOne(mappedBy = "worry")
     private AiAnswer aiAnswer;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
