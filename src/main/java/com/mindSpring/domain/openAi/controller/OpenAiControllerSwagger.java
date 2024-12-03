@@ -1,7 +1,7 @@
 package com.mindSpring.domain.openAi.controller;
 
+import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.openAi.dto.OpenAiRequestDto;
-import com.mindSpring.domain.openAi.dto.OpenAiResponseDto;
 import com.mindSpring.exception.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -20,7 +20,7 @@ public interface OpenAiControllerSwagger {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "조회 성공",
-                            content = @Content(schema = @Schema(implementation = OpenAiResponseDto.class))),
+                            content = @Content(schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "401", description = "카테고리를 찾을 수 없음",
@@ -31,7 +31,7 @@ public interface OpenAiControllerSwagger {
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<OpenAiResponseDto> getOpenAi(
+    ResponseEntity<ResponseMessage<Object>> getOpenAi(
             @Parameter(description = "회원 ID", required = true) Long memberId,
             @Parameter(description = "카테고리 ID", required = true) Long categoryId,
             @Parameter(description = "고민 ID", required = true) Long worryId,
@@ -43,7 +43,7 @@ public interface OpenAiControllerSwagger {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "생성 성공",
-                            content = @Content(schema = @Schema(implementation = OpenAiResponseDto.class))),
+                            content = @Content(schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "401", description = "카테고리를 찾을 수 없음",
@@ -52,7 +52,7 @@ public interface OpenAiControllerSwagger {
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<String> createOpenAi(
+    ResponseEntity<ResponseMessage<Object>> createOpenAi(
             @Parameter(description = "회원 ID", required = true) Long memberId,
             @Parameter(description = "카테고리 ID", required = true) Long categoryId,
             @Parameter(description = "고민 ID", required = true) Long worryId,
