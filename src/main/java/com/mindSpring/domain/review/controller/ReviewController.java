@@ -1,9 +1,11 @@
 package com.mindSpring.domain.review.controller;
 
+import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.review.dto.ReviewRequestDto;
 import com.mindSpring.domain.review.dto.ReviewResponseDto;
 import com.mindSpring.domain.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,43 +13,63 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/member/{memberId}/counselor/{counselorId}/review")
+@RequestMapping("/member/{memberId}")
 public class ReviewController implements ReviewControllerSwagger{
 
     private final ReviewService reviewService;
 
     // 리뷰 작성
     @Override
-    @PostMapping
-    public ResponseEntity<String> createReview (@PathVariable("memberId") Long memberId,
-                                                @PathVariable("counselorId") Long counselorId,
-                                                @RequestBody ReviewRequestDto reviewRequestDto) {
+    @PostMapping("/counselor/{counselorId}/review")
+    public ResponseEntity<ResponseMessage<Object>> createReview (@PathVariable("memberId") Long memberId,
+                                                         @PathVariable("counselorId") Long counselorId,
+                                                         @RequestBody ReviewRequestDto reviewRequestDto) {
 
-        reviewService.createReview(memberId, counselorId, reviewRequestDto);
-        return ResponseEntity.ok("리뷰가 등록되었습니다.");
+        ReviewResponseDto review = reviewService.createReview(memberId, counselorId, reviewRequestDto);
+
+        ResponseMessage<Object> response = new ResponseMessage<>(
+                "success",
+                "리뷰 등록 성공",
+                review
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 
     // 리뷰 조회
     @Override
-    @GetMapping("/{reviewId}")
-    public ResponseEntity<ReviewResponseDto> getReview (@PathVariable("memberId") Long memberId,
-                                                        @PathVariable("counselorId") Long counselorId,
+    @GetMapping("review/{reviewId}")
+    public ResponseEntity<ResponseMessage<Object>> getReview (@PathVariable("memberId") Long memberId,
                                                         @PathVariable("reviewId") Long reviewId) {
 
-        ReviewResponseDto review = reviewService.getReview(memberId, counselorId, reviewId);
-        return ResponseEntity.ok(review);
+        ReviewResponseDto review = reviewService.getReview(memberId, reviewId);
+
+        ResponseMessage<Object> response = new ResponseMessage<>(
+                "success",
+                "리뷰 조회 성공",
+                review
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 
     // 리뷰 전체 조회
     @Override
-    @GetMapping
-    public ResponseEntity<List<ReviewResponseDto>> getReviews (@PathVariable("memberId") Long memberId,
+    @GetMapping("counselor/{counselorId}/review")
+    public ResponseEntity<ResponseMessage<Object>> getReviews (@PathVariable("memberId") Long memberId,
                                                                @PathVariable("counselorId") Long counselorId){
 
         List<ReviewResponseDto> reviews = reviewService.getReviews(memberId, counselorId);
-        return ResponseEntity.ok(reviews);
+
+        ResponseMessage<Object> response = new ResponseMessage<>(
+                "success",
+                "상담사별 리뷰 조회 성공",
+                reviews
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 }
