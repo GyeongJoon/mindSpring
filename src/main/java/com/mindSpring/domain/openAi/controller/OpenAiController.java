@@ -1,10 +1,11 @@
 package com.mindSpring.domain.openAi.controller;
 
+import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.openAi.dto.OpenAiRequestDto;
 import com.mindSpring.domain.openAi.dto.OpenAiResponseDto;
 import com.mindSpring.domain.openAi.service.OpenAiService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,22 +19,34 @@ public class OpenAiController implements OpenAiControllerSwagger {
     // AiAnswer 등록
     @Override
     @PostMapping
-    public ResponseEntity<String> createOpenAi(@PathVariable("memberId") Long memberId,
-                                               @PathVariable("categoryId") Long categoryId,
-                                               @PathVariable("worryId") Long worryId,
-                                               @RequestBody OpenAiRequestDto openAiRequestDto) {
+    public ResponseEntity<ResponseMessage<Object>> createOpenAi(@PathVariable("memberId") Long memberId,
+                                                        @PathVariable("categoryId") Long categoryId,
+                                                        @PathVariable("worryId") Long worryId,
+                                                        @RequestBody OpenAiRequestDto openAiRequestDto) {
         OpenAiResponseDto aiAnswer = openAiService.createAiAnswer(memberId, categoryId, worryId, openAiRequestDto);
-        return ResponseEntity.ok(aiAnswer + "저장");
+
+        ResponseMessage<Object> response = new ResponseMessage<>(
+                "success",
+                "AI답변 등록 성공",
+                aiAnswer
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     // AiAnswer 조회
     @Override
     @GetMapping("/{openAiId}")
-    public ResponseEntity<OpenAiResponseDto> getOpenAi(@PathVariable("memberId") Long memberId,
+    public ResponseEntity<ResponseMessage<Object>> getOpenAi(@PathVariable("memberId") Long memberId,
                                                        @PathVariable("categoryId") Long categoryId,
                                                        @PathVariable("worryId") Long worryId,
                                                        @PathVariable("openAiId") Long openAiId) {
         OpenAiResponseDto aiAnswer = openAiService.getAiAnswer(memberId, categoryId, worryId, openAiId);
-        return ResponseEntity.ok(aiAnswer);
+
+        ResponseMessage<Object> response = new ResponseMessage<>(
+                "success",
+                "AI답변 조회 성공",
+                aiAnswer
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
