@@ -1,5 +1,6 @@
 package com.mindSpring.domain.worry.controller;
 
+import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.worry.dto.WorryRequestDto;
 import com.mindSpring.domain.worry.dto.WorryResponseDto;
 import com.mindSpring.exception.ErrorResponse;
@@ -19,14 +20,15 @@ public interface WorryControllerSwagger {
     @Operation(summary = "고민 등록(고민 작성 페이지)", description = "새로운 고민을 등록합니다.")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "200", description = "등록 성공"),
+                    @ApiResponse(responseCode = "200", description = "등록 성공",
+                            content = @Content(schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "401", description = "카테고리를 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<String> createWorry(
+    ResponseEntity<ResponseMessage<Object>> createWorry(
             @Parameter(description = "회원 ID", required = true) Long memberId,
             @Parameter(description = "카테고리 ID", required = true) Long categoryId,
             @Parameter(description = "고민 정보", required = true) WorryRequestDto worryRequestDto
@@ -36,7 +38,7 @@ public interface WorryControllerSwagger {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "조회 성공",
-                            content = @Content(schema = @Schema(implementation = WorryResponseDto.class))),
+                            content = @Content(schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "401", description = "카테고리를 찾을 수 없음",
@@ -45,7 +47,7 @@ public interface WorryControllerSwagger {
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<WorryResponseDto> getWorry(
+    ResponseEntity<ResponseMessage<Object>> getWorry(
             @Parameter(description = "회원 ID", required = true) Long memberId,
             @Parameter(description = "카테고리 ID", required = true) Long categoryId,
             @Parameter(description = "고민 ID", required = true) Long worryId
@@ -55,14 +57,14 @@ public interface WorryControllerSwagger {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "조회 성공",
-                            content = @Content(schema = @Schema(implementation = WorryResponseDto.class))),
+                            content = @Content(schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "401", description = "카테고리를 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<Page<WorryResponseDto>> getWorries(
+    ResponseEntity<ResponseMessage<Object>> getWorries(
             @Parameter(description = "회원 ID", required = true) Long memberId,
             @Parameter(description = "카테고리 ID", required = true) Long categoryId,
             @Parameter(description = "page", required = true) int page,
