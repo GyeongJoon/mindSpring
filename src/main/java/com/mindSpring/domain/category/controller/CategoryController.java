@@ -1,8 +1,10 @@
 package com.mindSpring.domain.category.controller;
 
+import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.category.dto.CategoryResponseDto;
 import com.mindSpring.domain.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,16 +23,30 @@ public class CategoryController implements CategoryControllerSwagger{
     // 카테고리 조회
     @GetMapping("/{categoryId}")
     @Override
-    public ResponseEntity<CategoryResponseDto> getCategory(@PathVariable Long memberId, @PathVariable Long categoryId) {
+    public ResponseEntity<ResponseMessage<Object>> getCategory(@PathVariable Long memberId, @PathVariable Long categoryId) {
         CategoryResponseDto category = categoryService.getCategory(memberId, categoryId);
-        return ResponseEntity.ok(category);
+        // API 응답 메시지 생성
+        ResponseMessage<Object> response = new ResponseMessage<>(
+                "success",
+                "카테고리 조회 성공",
+                category
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     // 카테고리 전체 조회
     @GetMapping
     @Override
-    public ResponseEntity<List<CategoryResponseDto>> getCategoryList(@PathVariable Long memberId) {
+    public ResponseEntity<ResponseMessage<Object>> getCategoryList(@PathVariable Long memberId) {
         List<CategoryResponseDto> categories = categoryService.getCategories(memberId);
-        return ResponseEntity.ok(categories);
+        // API 응답 메시지 생성
+        ResponseMessage<Object> response = new ResponseMessage<>(
+                "success",
+                "카테고리 전체 조회 성공",
+                categories
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

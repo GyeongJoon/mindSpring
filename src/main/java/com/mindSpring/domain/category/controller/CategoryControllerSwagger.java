@@ -1,5 +1,6 @@
 package com.mindSpring.domain.category.controller;
 
+import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.category.dto.CategoryResponseDto;
 import com.mindSpring.exception.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,14 +22,14 @@ public interface CategoryControllerSwagger {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "조회 성공",
-                            content = @Content(schema = @Schema(implementation = CategoryResponseDto.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
                     @ApiResponse(responseCode = "401", description = "카테고리를 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<CategoryResponseDto> getCategory(
+    ResponseEntity<ResponseMessage<Object>> getCategory(
             @Parameter(description = "회원 ID", required = true) Long memberId,
             @Parameter(description = "카테고리 ID", required = true) Long categoryId
     );
@@ -38,12 +39,12 @@ public interface CategoryControllerSwagger {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "조회 성공",
-                            content = @Content(schema = @Schema(implementation = CategoryResponseDto.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
-    ResponseEntity<List<CategoryResponseDto>> getCategoryList(
+    ResponseEntity<ResponseMessage<Object>> getCategoryList(
             @Parameter(description = "회원 ID", required = true) Long memberId
     );
 }
