@@ -1,6 +1,8 @@
 package com.mindSpring.domain.review.service;
 
+import com.mindSpring.domain.counselor.entity.Counselor;
 import com.mindSpring.domain.counselor.repository.CounselorRepository;
+import com.mindSpring.domain.member.entity.Member;
 import com.mindSpring.domain.member.repository.MemberRepository;
 import com.mindSpring.domain.review.dto.ReviewRequestDto;
 import com.mindSpring.domain.review.dto.ReviewResponseDto;
@@ -26,23 +28,21 @@ public class ReviewService {
     // 리뷰 등록 API
     @Transactional
     public ReviewResponseDto createReview(Long memberId, Long counselorId, ReviewRequestDto reviewRequestDto) {
-        memberRepository.findById(memberId)
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new appException(ErrorCode.MEMBER_NOT_FOUND));
-        counselorRepository.findById(counselorId)
+        Counselor counselor = counselorRepository.findById(counselorId)
                 .orElseThrow(() -> new appException(ErrorCode.COUNSELOR_NOT_FOUND));
 
-        Review reviewEntity = ReviewMapper.toReviewEntity(reviewRequestDto);
+        Review reviewEntity = ReviewMapper.toReviewEntity(member, counselor, reviewRequestDto);
         reviewRepository.save(reviewEntity);
         return ReviewMapper.toReviewDto(reviewEntity);
     }
 
     // 리뷰 조회 API
     @Transactional(readOnly = true)
-    public ReviewResponseDto getReview(Long memberId, Long counselorId, Long reviewId) {
+    public ReviewResponseDto getReview(Long memberId, Long reviewId) {
         memberRepository.findById(memberId)
                 .orElseThrow(() -> new appException(ErrorCode.MEMBER_NOT_FOUND));
-        counselorRepository.findById(counselorId)
-                .orElseThrow(() -> new appException(ErrorCode.COUNSELOR_NOT_FOUND));
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new appException(ErrorCode.REVIEW_NOT_FOUND));
 
@@ -57,7 +57,12 @@ public class ReviewService {
         counselorRepository.findById(counselorId)
                 .orElseThrow(() -> new appException(ErrorCode.COUNSELOR_NOT_FOUND));
 
-        List<Review> reviews = reviewRepository.findAll();
+        // 상담사별 리뷰 조회
+        List<Review> reviews = reviewRepository.findByCounselorId(counselorId);
+
+        if (reviews.isEmpty()) {
+            throw new appException(ErrorCode.REVIEW_NOT_FOUND); // 리뷰가 없을 경우 예외 처리
+        }
 
         return ReviewMapper.toReviewDtoList(reviews);
     }
