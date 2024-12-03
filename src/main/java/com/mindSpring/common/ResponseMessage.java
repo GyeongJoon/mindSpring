@@ -15,6 +15,4 @@ public class ResponseMessage<T> {
         this.message = message;
         this.data = data;
     }
-
-    // Getters and setters...
 }
