@@ -2,7 +2,6 @@ package com.mindSpring.domain.worry.controller;
 
 import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.worry.dto.WorryRequestDto;
-import com.mindSpring.domain.worry.dto.WorryResponseDto;
 import com.mindSpring.exception.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,13 +10,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 
 @Tag(name = "고민 관리",  description = "고민 CRUD API")
 public interface WorryControllerSwagger {
 
-    @Operation(summary = "고민 등록(고민 작성 페이지)", description = "새로운 고민을 등록합니다.")
+    @Operation(summary = "고민 + AI답변 등록(고민 작성 페이지)", description = "새로운 고민을 등록합니다.")
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "등록 성공",
@@ -34,7 +32,7 @@ public interface WorryControllerSwagger {
             @Parameter(description = "고민 정보", required = true) WorryRequestDto worryRequestDto
     );
 
-    @Operation(summary = "고민 조회(고민 상세 페이지)", description = "고민 ID로 고민 정보를 조회합니다.")
+    @Operation(summary = "고민 + AI답변 조회(고민 상세 페이지)", description = "고민 ID로 고민 정보를 조회합니다.")
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "조회 성공",
@@ -53,7 +51,7 @@ public interface WorryControllerSwagger {
             @Parameter(description = "고민 ID", required = true) Long worryId
     );
 
-    @Operation(summary = "고민 전체 조회(고민 목록 페이지)", description = "고민 전체 정보를 조회합니다.")
+    @Operation(summary = "사용자별 고민 전체 조회(고민 목록 페이지)", description = "고민 전체 정보를 조회합니다.")
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "조회 성공",

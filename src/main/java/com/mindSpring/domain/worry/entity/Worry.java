@@ -4,7 +4,6 @@ import com.mindSpring.domain.aiAnswer.entity.AiAnswer;
 import com.mindSpring.domain.entity.BaseEntity;
 import com.mindSpring.domain.category.entity.Category;
 import com.mindSpring.domain.member.entity.Member;
-import com.mindSpring.domain.openAi.entity.OpenAi;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,11 +23,10 @@ public class Worry extends BaseEntity {
 
     private String content;
 
-    @OneToOne(mappedBy = "worry")
-    private AiAnswer aiAnswer;
+    private String openAiAnswer;
 
     @OneToOne(mappedBy = "worry")
-    private OpenAi openAi;
+    private AiAnswer aiAnswer;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

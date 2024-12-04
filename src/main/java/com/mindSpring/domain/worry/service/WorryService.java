@@ -49,6 +49,10 @@ public class WorryService {
         Worry worry = worryRepository.findById(worryId)
                 .orElseThrow(() -> new appException(ErrorCode.WORRY_NOT_FOUND));
 
+        if(categoryId != worry.getCategory().getId()){
+            throw new appException(ErrorCode.WORRY_NOT_FOUND);
+        }
+
         return WorryMapper.toWorryDto(worry);
     }
 
