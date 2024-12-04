@@ -48,7 +48,7 @@ public class AiAnswerService {
         worryRepository.findById(worryId)
                 .orElseThrow(() -> new appException(ErrorCode.WORRY_NOT_FOUND));
         AiAnswer aiAnswer = aiAnswerRepository.findById(aiAnswerId)
-                .orElseThrow(() -> new appException(ErrorCode.AIANSWER_NOT_FOUND));
+                .orElseThrow(() -> new appException(ErrorCode.AI_ANSWER_NOT_FOUND));
 
         return AiAnswerMapper.toAiAnswerDto(aiAnswer);
     }
