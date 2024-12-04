@@ -1,7 +1,6 @@
 package com.mindSpring.domain.category.controller;
 
 import com.mindSpring.common.ResponseMessage;
-import com.mindSpring.domain.category.dto.CategoryResponseDto;
 import com.mindSpring.exception.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
