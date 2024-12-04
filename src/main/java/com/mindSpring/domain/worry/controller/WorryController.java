@@ -3,7 +3,6 @@ package com.mindSpring.domain.worry.controller;
 import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.worry.dto.WorryRequestDto;
 import com.mindSpring.domain.worry.dto.WorryResponseDto;
-import com.mindSpring.domain.worry.entity.Worry;
 import com.mindSpring.domain.worry.service.WorryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

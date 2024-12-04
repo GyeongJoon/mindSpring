@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class WorryRequestDto {
 
     private String content;
+
+    private String openAiAnswer;
 }

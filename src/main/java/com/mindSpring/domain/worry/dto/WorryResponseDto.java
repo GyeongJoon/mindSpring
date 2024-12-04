@@ -17,6 +17,8 @@ public class WorryResponseDto {
 
     private String content;
 
+    private String openAiAnswer;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;

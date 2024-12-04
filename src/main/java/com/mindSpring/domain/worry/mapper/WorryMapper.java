@@ -13,6 +13,7 @@ public class WorryMapper {
     public static Worry toWorryEntity(Member member, Category category, WorryRequestDto worryRequestDto) {
         return Worry.builder()
                 .content(worryRequestDto.getContent())
+                .openAiAnswer(worryRequestDto.getOpenAiAnswer())
                 .category(category)
                 .member(member)
                 .build();
@@ -23,6 +24,7 @@ public class WorryMapper {
         return WorryResponseDto.builder()
                 .id(worry.getId())
                 .content(worry.getContent())
+                .openAiAnswer(worry.getOpenAiAnswer())
                 .build();
     }
 
