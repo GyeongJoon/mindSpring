@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member/{memberId}/category/{categoryId}/worry")
@@ -54,11 +56,8 @@ public class WorryController implements WorryControllerSwagger{
     // 고민 목록 보기
     @Override
     @GetMapping
-    public ResponseEntity<ResponseMessage<Object>> getWorries(@PathVariable("memberId") Long memberId,
-                                                             @PathVariable("categoryId") Long categoryId,
-                                                             @RequestParam int page,
-                                                             @RequestParam int size) {
-        Page<WorryResponseDto> worryPage = worryService.getWorryPage(memberId, categoryId, page, size);
+    public ResponseEntity<ResponseMessage<Object>> getWorries(@PathVariable("memberId") Long memberId) {
+        List<WorryResponseDto> worryPage = worryService.getWorryPage(memberId);
 
         ResponseMessage<Object> response = new ResponseMessage<>(
                 "success",
