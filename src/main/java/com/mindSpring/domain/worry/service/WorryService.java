@@ -18,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class WorryService {
@@ -58,20 +60,12 @@ public class WorryService {
 
     // 고민 전체 조회 API
     @Transactional(readOnly = true)
-    public Page<WorryResponseDto> getWorryPage(Long memberId, Long categoryId, int page, int size) {
+    public List<WorryResponseDto> getWorryPage(Long memberId) {
         memberRepository.findById(memberId)
                 .orElseThrow(() -> new appException(ErrorCode.MEMBER_NOT_FOUND));
-        categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new appException(ErrorCode.CATEGORY_NOT_FOUND));
 
-        Pageable pageable = PageRequest.of(page, size);
+        List<Worry> allByMemberId = worryRepository.findAllByMemberId(memberId);
 
-        Page<Worry> allByMemberId = worryRepository.findAllByMemberId(memberId, pageable);
-
-        if (allByMemberId.isEmpty()) {
-            throw new appException(ErrorCode.INVALID_PAGEABLE);
-        }
-
-        return WorryMapper.toWorryDtoPage(allByMemberId);
+        return WorryMapper.toWorryDtoList(allByMemberId);
     }
 }

@@ -7,6 +7,9 @@ import com.mindSpring.domain.category.entity.Category;
 import com.mindSpring.domain.member.entity.Member;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class WorryMapper {
 
     // Dto -> Entity
@@ -28,8 +31,8 @@ public class WorryMapper {
                 .build();
     }
 
-    // Entity -> Dto (페이지)
-    public static Page<WorryResponseDto> toWorryDtoPage(Page<Worry> worrys) {
-        return worrys.map(WorryMapper::toWorryDto);
+    // Entity -> Dto
+    public static List<WorryResponseDto> toWorryDtoList(List<Worry> worrys) {
+        return worrys.stream().map(WorryMapper::toWorryDto).collect(Collectors.toList());
     }
 }

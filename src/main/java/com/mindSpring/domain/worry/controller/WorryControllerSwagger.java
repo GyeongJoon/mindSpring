@@ -57,15 +57,10 @@ public interface WorryControllerSwagger {
                     @ApiResponse(responseCode = "200", description = "조회 성공",
                             content = @Content(schema = @Schema(implementation = ResponseMessage.class))),
                     @ApiResponse(responseCode = "400", description = "회원을 찾을 수 없음",
-                            content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-                    @ApiResponse(responseCode = "401", description = "카테고리를 찾을 수 없음",
                             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     ResponseEntity<ResponseMessage<Object>> getWorries(
-            @Parameter(description = "회원 ID", required = true) Long memberId,
-            @Parameter(description = "카테고리 ID", required = true) Long categoryId,
-            @Parameter(description = "page", required = true) int page,
-            @Parameter(description = "size", required = true) int size
+            @Parameter(description = "회원 ID", required = true) Long memberId
     );
 }
