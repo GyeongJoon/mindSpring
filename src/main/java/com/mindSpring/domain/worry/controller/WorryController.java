@@ -14,14 +14,14 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/member/{memberId}/category/{categoryId}/worry")
+@RequestMapping("/member/{memberId}")
 public class WorryController implements WorryControllerSwagger{
 
     private final WorryService worryService;
 
     // 고민 입력
     @Override
-    @PostMapping
+    @PostMapping("/category/{categoryId}/worry")
     public ResponseEntity<ResponseMessage<Object>> createWorry(@PathVariable("memberId") Long memberId,
                                                        @PathVariable("categoryId") Long categoryId,
                                                        @RequestBody WorryRequestDto worryRequestDto) {
@@ -38,7 +38,7 @@ public class WorryController implements WorryControllerSwagger{
 
     // 고민 조회
     @Override
-    @GetMapping("{worryId}")
+    @GetMapping("/category/{categoryId}/worry/{worryId}")
     public ResponseEntity<ResponseMessage<Object>> getWorry(@PathVariable("memberId") Long memberId,
                                                      @PathVariable("categoryId") Long categoryId,
                                                      @PathVariable("worryId") Long worryId) {
@@ -55,7 +55,7 @@ public class WorryController implements WorryControllerSwagger{
 
     // 고민 목록 보기
     @Override
-    @GetMapping
+    @GetMapping("/worry")
     public ResponseEntity<ResponseMessage<Object>> getWorries(@PathVariable("memberId") Long memberId) {
         List<WorryResponseDto> worryPage = worryService.getWorryPage(memberId);
 
