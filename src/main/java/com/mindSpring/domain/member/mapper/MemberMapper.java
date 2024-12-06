@@ -1,6 +1,5 @@
 package com.mindSpring.domain.member.mapper;
 
-import com.mindSpring.domain.member.dto.LoginRequestDto;
 import com.mindSpring.domain.member.dto.SignupRequestDto;
 import com.mindSpring.domain.member.dto.MemberResponseDto;
 import com.mindSpring.domain.member.entity.Member;

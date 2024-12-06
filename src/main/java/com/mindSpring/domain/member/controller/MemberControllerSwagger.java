@@ -2,7 +2,6 @@ package com.mindSpring.domain.member.controller;
 
 import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.member.dto.LoginRequestDto;
-import com.mindSpring.domain.member.dto.MemberResponseDto;
 import com.mindSpring.domain.member.dto.SignupRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -13,7 +12,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
-import com.mindSpring.common.ResponseMessage;
 
 @Tag(name = "회원 관리", description = "회원 CRUD API")
 public interface MemberControllerSwagger {
