@@ -2,7 +2,6 @@ package com.mindSpring.domain.review.controller;
 
 import com.mindSpring.common.ResponseMessage;
 import com.mindSpring.domain.review.dto.ReviewRequestDto;
-import com.mindSpring.domain.review.dto.ReviewResponseDto;
 import com.mindSpring.exception.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
