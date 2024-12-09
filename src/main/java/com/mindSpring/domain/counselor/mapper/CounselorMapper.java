@@ -16,6 +16,7 @@ public class CounselorMapper {
                 .age(counselor.getAge())
                 .gender(counselor.getGender())
                 .career(counselor.getCareer())
+                .experience(counselor.getExperience())
                 .build();
     }
 
