@@ -30,8 +30,11 @@ public class Counselor{
     @Column(nullable = false)
     private String gender;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String career;
+
+    @Column(columnDefinition = "TEXT")
+    private String experience;
 
     @OneToMany(mappedBy = "counselor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();

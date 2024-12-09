@@ -20,4 +20,6 @@ public class CounselorResponseDto {
     private String gender;
 
     private String career;
+
+    private String experience;
 }
