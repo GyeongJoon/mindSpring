@@ -19,7 +19,7 @@ public class WorryController implements WorryControllerSwagger{
 
     private final WorryService worryService;
 
-    // 고민 입력
+    // 고민 등록
     @Override
     @PostMapping("/category/{categoryId}/worry")
     public ResponseEntity<ResponseMessage<Object>> createWorry(@PathVariable("memberId") Long memberId,
@@ -53,7 +53,7 @@ public class WorryController implements WorryControllerSwagger{
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // 고민 목록 보기
+    // 고민 전체 조회
     @Override
     @GetMapping("/worry")
     public ResponseEntity<ResponseMessage<Object>> getWorries(@PathVariable("memberId") Long memberId) {

@@ -50,7 +50,7 @@ public class MemberController implements MemberControllerSwagger{
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // 프로필
+    // 회원 조회(프로필)
     @Override
     @GetMapping("/member/{memberId}/profile")
     public ResponseEntity<ResponseMessage<Object>> getMemberId(@PathVariable("memberId") Long memberId) {

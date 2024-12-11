@@ -49,7 +49,7 @@ public class ReviewService {
         return ReviewMapper.toReviewDto(review);
     }
 
-    // 리뷰 전체 조회 API
+    // 상담사별 리뷰 조회 API
     @Transactional(readOnly = true)
     public List<ReviewResponseDto> getReviews(Long memberId, Long counselorId) {
         memberRepository.findById(memberId)
@@ -57,11 +57,10 @@ public class ReviewService {
         counselorRepository.findById(counselorId)
                 .orElseThrow(() -> new appException(ErrorCode.COUNSELOR_NOT_FOUND));
 
-        // 상담사별 리뷰 조회
         List<Review> reviews = reviewRepository.findByCounselorId(counselorId);
 
         if (reviews.isEmpty()) {
-            throw new appException(ErrorCode.REVIEW_NOT_FOUND); // 리뷰가 없을 경우 예외 처리
+            throw new appException(ErrorCode.REVIEW_NOT_FOUND);
         }
 
         return ReviewMapper.toReviewDtoList(reviews);
