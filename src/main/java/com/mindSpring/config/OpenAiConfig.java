@@ -9,17 +9,4 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenAiConfig {
 
-    @Value("${openai.api.url}")
-    private String apiUrl;
-
-    @Value("${openai.api.key}")
-    private String apiKey;
-
-    @Bean
-    public WebClient webClient() {
-        return WebClient.builder()
-                .baseUrl(apiUrl)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
-                .build();
-    }
 }
