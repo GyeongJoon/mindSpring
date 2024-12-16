@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class OpenAiConfig {
-    @Configuration
-    public class OpenAiConfig {
 
         @Value("${openai.api.url}")
         private String apiUrl;
