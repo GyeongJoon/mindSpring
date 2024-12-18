@@ -23,6 +23,6 @@ public class Category{
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category")  // OneToOne을 OneToMany로 변경
+    @OneToMany(mappedBy = "category")
     private List<Worry> worries;
 }
