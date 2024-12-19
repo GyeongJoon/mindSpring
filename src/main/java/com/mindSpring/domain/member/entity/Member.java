@@ -48,22 +48,4 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
-    // update 메서드
-    public void updateMemberInfo(SignupRequestDto signupRequestDto) {
-        if (signupRequestDto.getName() != null) {
-            this.name = signupRequestDto.getName();
-        }
-        if (signupRequestDto.getEmail() != null) {
-            this.email = signupRequestDto.getEmail();
-        }
-        if (signupRequestDto.getJob() != null) {
-            this.job = signupRequestDto.getJob();
-        }
-        if (signupRequestDto.getGender() != null) {
-            this.gender = signupRequestDto.getGender();
-        }
-        if (signupRequestDto.getAge() != 0) {
-            this.age = signupRequestDto.getAge();
-        }
-    }
 }

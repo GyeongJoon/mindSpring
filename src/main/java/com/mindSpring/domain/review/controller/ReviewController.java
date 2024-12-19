@@ -55,7 +55,7 @@ public class ReviewController implements ReviewControllerSwagger{
     }
 
 
-    // 상담사별 리뷰 조회
+    // 상담사 별 리뷰 조회
     @Override
     @GetMapping("counselor/{counselorId}/review")
     public ResponseEntity<ResponseMessage<Object>> getReviews (@PathVariable("memberId") Long memberId,
